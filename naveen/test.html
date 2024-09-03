@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+
+<body>
+    <div class="bg-white">
+        <!-- Your existing HTML content here -->
+
+        <!-- Display data -->
+        <div id="result" class="p-6 mt-10">
+            <h2 class="text-lg font-bold">Submitted Information</h2>
+            <p id="postal-code-display"></p>
+            <p id="address-display"></p>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                postalCode: params.get('postal-code'),
+                address: params.get('address')
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const { postalCode, address } = getQueryParams();
+
+            if (postalCode && address) {
+                document.getElementById('postal-code-display').textContent = `Postal Code: ${postalCode}`;
+                document.getElementById('address-display').textContent = `Address: ${address}`;
+            } else {
+                document.getElementById('result').textContent = 'No data available.';
+            }
+        });
+    </script>
+</body>
+
+</html>
